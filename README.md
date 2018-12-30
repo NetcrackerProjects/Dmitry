@@ -18,4 +18,4 @@
     mvn clean install
 
 ## Запуск
-    java -jar ./task-manager-1.0-SNAPSHOT.jar
+    mvn exec:java
