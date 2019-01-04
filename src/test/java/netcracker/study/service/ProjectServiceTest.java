@@ -1,9 +1,10 @@
 package netcracker.study.service;
 
-import netcracker.study.api.repository.IProjectRepository;
+import netcracker.study.api.repository.ProjectRepository;
+import netcracker.study.api.service.ProjectService;
 import netcracker.study.entity.Project;
 import netcracker.study.error.InvalidInputException;
-import netcracker.study.repository.ProjectRepository;
+import netcracker.study.repository.ProjectRepositoryImpl;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -13,59 +14,68 @@ public class ProjectServiceTest {
 
     @Test
     public void testAddProjectPositive() throws InvalidInputException {
-        final String projectName = "created project";
-        final IProjectRepository IProjectRepository = new ProjectRepository();
-        final ProjectService projectService = new ProjectService(IProjectRepository);
-        final Project project = new Project();
+        String projectName = "created project";
+        ProjectRepository ProjectRepository = new ProjectRepositoryImpl();
+        ProjectService projectService = new ProjectServiceImpl(ProjectRepository);
+        Project project = new Project();
+
         project.setName(projectName);
         projectService.addProject(project);
-        final Project createdProject = projectService.getProjectByOrderIndex(0);
+        Project createdProject = projectService.getProjectByOrderIndex(0);
+
         Assert.assertEquals(projectName, createdProject.getName());
     }
 
     @Test(expected = InvalidInputException.class)
     public void testAddProjectNegative() throws InvalidInputException {
-        final IProjectRepository IProjectRepository = new ProjectRepository();
-        final ProjectService projectService = new ProjectService(IProjectRepository);
+        ProjectRepository ProjectRepository = new ProjectRepositoryImpl();
+        ProjectService projectService = new ProjectServiceImpl(ProjectRepository);
+
         projectService.addProject(null);
     }
 
     @Test
     public void testUpdateProjectPositive() throws InvalidInputException {
-        final String updatedName = "updated project name";
-        final IProjectRepository IProjectRepository = new ProjectRepository();
-        final ProjectService projectService = new ProjectService(IProjectRepository);
-        final Project project = new Project();
+        String updatedName = "updated project name";
+        ProjectRepository ProjectRepository = new ProjectRepositoryImpl();
+        ProjectServiceImpl projectService = new ProjectServiceImpl(ProjectRepository);
+        Project project = new Project();
+
         projectService.addProject(project);
-        final Project createdProject = projectService.getProjectByOrderIndex(0);
+        Project createdProject = projectService.getProjectByOrderIndex(0);
         createdProject.setName(updatedName);
         projectService.updateProject(project);
-        final Project updatedProject = projectService.getProjectByOrderIndex(0);
+        Project updatedProject = projectService.getProjectByOrderIndex(0);
+
         Assert.assertEquals(updatedName, updatedProject.getName());
     }
 
     @Test(expected = InvalidInputException.class)
     public void testUpdateProjectNegative() throws InvalidInputException {
-        final IProjectRepository IProjectRepository = new ProjectRepository();
-        final ProjectService projectService = new ProjectService(IProjectRepository);
+        ProjectRepository ProjectRepository = new ProjectRepositoryImpl();
+        ProjectServiceImpl projectService = new ProjectServiceImpl(ProjectRepository);
+
         projectService.updateProject(null);
     }
 
     @Test
     public void testDeleteProjectPositive() throws InvalidInputException {
-        final IProjectRepository IProjectRepository = new ProjectRepository();
-        final ProjectService projectService = new ProjectService(IProjectRepository);
-        final Project project = new Project();
+        ProjectRepository ProjectRepository = new ProjectRepositoryImpl();
+        ProjectServiceImpl projectService = new ProjectServiceImpl(ProjectRepository);
+        Project project = new Project();
+
         projectService.addProject(project);
         projectService.deleteProjectByOrderIndex(0);
-        final List<Project> projects = projectService.getProjects();
+        List<Project> projects = projectService.getProjects();
+
         Assert.assertTrue(projects.isEmpty());
     }
 
     @Test(expected = InvalidInputException.class)
     public void testDeleteProjectNegative() throws InvalidInputException {
-        final IProjectRepository IProjectRepository = new ProjectRepository();
-        final ProjectService projectService = new ProjectService(IProjectRepository);
+        ProjectRepository ProjectRepository = new ProjectRepositoryImpl();
+        ProjectServiceImpl projectService = new ProjectServiceImpl(ProjectRepository);
+
         projectService.deleteProjectByOrderIndex(0);
     }
 

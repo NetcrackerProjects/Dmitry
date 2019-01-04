@@ -2,10 +2,10 @@ package netcracker.study.api.repository;
 
 import netcracker.study.entity.Task;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
-public interface ITaskRepository {
+public interface TaskRepository {
 
     Task addTask(Task task);
 
@@ -23,4 +23,5 @@ public interface ITaskRepository {
 
     List<Task> getTasks();
 
+    Map<String, Task> getTasksMap();
 }

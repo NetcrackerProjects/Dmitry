@@ -1,17 +1,16 @@
 package netcracker.study.repository;
 
-import netcracker.study.api.repository.ITaskRepository;
-import netcracker.study.entity.Task;
 import lombok.Getter;
+import netcracker.study.api.repository.TaskRepository;
+import netcracker.study.entity.Task;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 @Getter
-public class TaskRepository implements ITaskRepository {
+public class TaskRepositoryImpl implements TaskRepository {
 
     private final Map<String, Task> tasksMap = new LinkedHashMap<>();
 

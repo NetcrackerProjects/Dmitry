@@ -2,17 +2,17 @@ package netcracker.study.controller;
 
 import lombok.Getter;
 import lombok.Setter;
-import netcracker.study.api.controller.IBootstrap;
-import netcracker.study.api.repository.IProjectRepository;
-import netcracker.study.api.repository.ITaskRepository;
-import netcracker.study.api.service.IProjectService;
-import netcracker.study.api.service.ITaskService;
+import netcracker.study.api.controller.Bootstrap;
+import netcracker.study.api.repository.ProjectRepository;
+import netcracker.study.api.repository.TaskRepository;
+import netcracker.study.api.service.ProjectService;
+import netcracker.study.api.service.TaskService;
 import netcracker.study.command.AbstractCommand;
 import netcracker.study.error.NoSuchCommandsException;
-import netcracker.study.repository.ProjectRepository;
-import netcracker.study.repository.TaskRepository;
-import netcracker.study.service.ProjectService;
-import netcracker.study.service.TaskService;
+import netcracker.study.repository.ProjectRepositoryImpl;
+import netcracker.study.repository.TaskRepositoryImpl;
+import netcracker.study.service.ProjectServiceImpl;
+import netcracker.study.service.TaskServiceImpl;
 import org.reflections.Reflections;
 
 import java.util.HashMap;
@@ -22,15 +22,15 @@ import java.util.Set;
 
 @Getter
 @Setter
-public class Bootstrap implements IBootstrap {
+public class BootstrapImpl implements Bootstrap {
 
-    private final IProjectRepository projectRepository = new ProjectRepository();
+    private final ProjectRepository projectRepository = new ProjectRepositoryImpl();
 
-    private final ITaskRepository taskRepository = new TaskRepository();
+    private final TaskRepository taskRepository = new TaskRepositoryImpl();
 
-    private final IProjectService projectService = new ProjectService(projectRepository);
+    private final ProjectService projectService = new ProjectServiceImpl(projectRepository);
 
-    private final ITaskService taskService = new TaskService(taskRepository);
+    private final TaskService taskService = new TaskServiceImpl(taskRepository);
 
     private final Scanner scanner = new Scanner(System.in);
 
@@ -42,13 +42,17 @@ public class Bootstrap implements IBootstrap {
 
     @Override
     public void start() {
-        try { initCommands(); } catch (Exception e) {
+        try {
+            initCommands();
+        } catch (Exception e) {
             e.printStackTrace();
         }
         System.out.println("PROJECT MANAGER");
         while (scanner.hasNext()) {
             final String userCommand = scanner.nextLine().toLowerCase().trim();
-            if ("exit".equals(userCommand)) { break; }
+            if ("exit".equals(userCommand)) {
+                break;
+            }
             if (commandsMapping.containsKey(userCommand)) {
                 try {
                     commandsMapping.get(userCommand).execute();
@@ -60,25 +64,14 @@ public class Bootstrap implements IBootstrap {
     }
 
     private void initCommands() throws IllegalAccessException, InstantiationException, NoSuchCommandsException {
-        if (commandClasses.isEmpty()) { throw new NoSuchCommandsException("No commands"); }
+        if (commandClasses.isEmpty()) {
+            throw new NoSuchCommandsException("No commands");
+        }
         for (final Class<? extends AbstractCommand> commandClass : commandClasses) {
             final AbstractCommand command = commandClass.newInstance();
             command.setBootstrap(this);
             commandsMapping.put(command.command(), command);
         }
     }
-
-    @Override
-    public String nextLine() {
-        return scanner.nextLine();
-    }
-
-    @Override
-    public Integer nextInt() {
-        try {
-            return Integer.parseInt(scanner.nextLine());
-        } catch (Exception e) {
-            return null;
-        }
-    }
+    
 }

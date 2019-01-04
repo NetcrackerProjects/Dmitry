@@ -1,17 +1,16 @@
 package netcracker.study.repository;
 
-import netcracker.study.api.repository.IProjectRepository;
-import netcracker.study.entity.Project;
 import lombok.Getter;
+import netcracker.study.api.repository.ProjectRepository;
+import netcracker.study.entity.Project;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 @Getter
-public class ProjectRepository implements IProjectRepository {
+public class ProjectRepositoryImpl implements ProjectRepository {
 
     private final Map<String, Project> projectsMap = new LinkedHashMap<>();
 

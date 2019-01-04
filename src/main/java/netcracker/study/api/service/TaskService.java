@@ -5,7 +5,7 @@ import netcracker.study.error.InvalidInputException;
 
 import java.util.List;
 
-public interface ITaskService {
+public interface TaskService {
 
     Task addTask(Task task) throws InvalidInputException;
 

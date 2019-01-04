@@ -1,29 +1,33 @@
 package netcracker.study.service;
 
-import netcracker.study.api.repository.IProjectRepository;
-import netcracker.study.api.service.IProjectService;
+import netcracker.study.api.repository.ProjectRepository;
+import netcracker.study.api.service.ProjectService;
 import netcracker.study.entity.Project;
-import netcracker.study.error.ProjectErrorMessage;
 import netcracker.study.error.InvalidInputException;
+import netcracker.study.error.ProjectErrorMessage;
 
-import java.util.*;
+import java.util.List;
 
-public class ProjectService implements IProjectService {
+public class ProjectServiceImpl implements ProjectService {
 
-    private final IProjectRepository projectRepository;
+    private final ProjectRepository projectRepository;
 
-    public ProjectService(IProjectRepository projectRepository) {
+    public ProjectServiceImpl(ProjectRepository projectRepository) {
         this.projectRepository = projectRepository;
     }
 
     public Project addProject(final Project project) throws InvalidInputException {
-        if (project == null) { throw new InvalidInputException(ProjectErrorMessage.INVALID_PROJECT_INPUT); }
+        if (project == null) {
+            throw new InvalidInputException(ProjectErrorMessage.INVALID_PROJECT_INPUT);
+        }
         return projectRepository.addProject(project);
     }
 
     @Override
     public Project getProjectByOrderIndex(final Integer projectOrderIndex) throws InvalidInputException {
-        if (projectOrderIndex == null) { throw new InvalidInputException(ProjectErrorMessage.INVALID_PROJECT_ORDER_INDEX); }
+        if (projectOrderIndex == null) {
+            throw new InvalidInputException(ProjectErrorMessage.INVALID_PROJECT_ORDER_INDEX);
+        }
         try {
             return projectRepository.getProjectByOrderIndex(projectOrderIndex);
         } catch (IndexOutOfBoundsException e) {
@@ -33,7 +37,9 @@ public class ProjectService implements IProjectService {
 
     @Override
     public Project getProjectById(final String projectId) throws InvalidInputException {
-        if (projectId == null) { throw new InvalidInputException(ProjectErrorMessage.INVALID_PROJECT_ORDER_INDEX); }
+        if (projectId == null) {
+            throw new InvalidInputException(ProjectErrorMessage.INVALID_PROJECT_ORDER_INDEX);
+        }
         try {
             return projectRepository.getProjectById(projectId);
         } catch (IndexOutOfBoundsException e) {
@@ -50,7 +56,9 @@ public class ProjectService implements IProjectService {
 
     @Override
     public Project deleteProjectByOrderIndex(Integer projectOrderIndex) throws InvalidInputException {
-        if (projectOrderIndex == null) { throw new InvalidInputException(ProjectErrorMessage.INVALID_PROJECT_ORDER_INDEX); }
+        if (projectOrderIndex == null) {
+            throw new InvalidInputException(ProjectErrorMessage.INVALID_PROJECT_ORDER_INDEX);
+        }
         try {
             return projectRepository.deleteProjectByOrderIndex(projectOrderIndex);
         } catch (IndexOutOfBoundsException e) {

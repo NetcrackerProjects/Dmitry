@@ -4,8 +4,9 @@ import netcracker.study.entity.Project;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
-public interface IProjectRepository {
+public interface ProjectRepository {
 
     Project addProject(Project project);
 
@@ -23,4 +24,5 @@ public interface IProjectRepository {
 
     List<Project> getProjects();
 
+    Map<String, Project> getProjectsMap();
 }

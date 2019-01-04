@@ -1,6 +1,6 @@
 package netcracker.study.api.controller;
 
-public interface IBootstrap {
+public interface Bootstrap {
 
     void start();
 

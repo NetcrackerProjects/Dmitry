@@ -5,7 +5,7 @@ import netcracker.study.error.InvalidInputException;
 
 import java.util.List;
 
-public interface IProjectService {
+public interface ProjectService {
 
     Project addProject(Project project) throws InvalidInputException;
 

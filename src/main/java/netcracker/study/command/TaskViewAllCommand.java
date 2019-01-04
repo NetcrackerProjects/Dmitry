@@ -10,7 +10,9 @@ public class TaskViewAllCommand extends AbstractCommand {
     public void execute() {
         final Collection<Task> tasks = bootstrap.getTaskService().getTasks();
         int orderId = 0;
-        if (tasks.isEmpty()) { System.out.println("Tasks not found"); }
+        if (tasks.isEmpty()) {
+            System.out.println("Tasks not found");
+        }
         for (final Task task : tasks) {
             System.out.println(orderId + " " + task);
             orderId++;
