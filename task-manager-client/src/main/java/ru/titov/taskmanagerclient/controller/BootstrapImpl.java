@@ -14,11 +14,8 @@ import ru.titov.taskmanagerclient.command.user.UserViewAllCommand;
 import ru.titov.taskmanagerclient.error.command.NoSuchCommandsException;
 import ru.titov.taskmanagerclient.util.ScannerUtil;
 import ru.titov.taskmanagerserver.endpoint.project.ProjectEndpoint;
-import ru.titov.taskmanagerserver.endpoint.project.ProjectEndpointService;
 import ru.titov.taskmanagerserver.endpoint.task.TaskEndpoint;
-import ru.titov.taskmanagerserver.endpoint.task.TaskEndpointService;
 import ru.titov.taskmanagerserver.endpoint.user.UserEndpoint;
-import ru.titov.taskmanagerserver.endpoint.user.UserEndpointService;
 
 import java.util.*;
 
@@ -26,11 +23,11 @@ import java.util.*;
 @Setter
 public class BootstrapImpl implements Bootstrap {
 
-    private final UserEndpoint userEndpoint = new UserEndpointService().getUserEndpointPort();
+    private final UserEndpoint userEndpoint;
 
-    private final TaskEndpoint taskEndpoint = new TaskEndpointService().getTaskEndpointPort();
+    private final TaskEndpoint taskEndpoint;
 
-    private final ProjectEndpoint projectEndpoint = new ProjectEndpointService().getProjectEndpointPort();
+    private final ProjectEndpoint projectEndpoint;
 
     private final Map<String, AbstractCommand> commandsMapping = new LinkedHashMap<>();
 
@@ -40,6 +37,12 @@ public class BootstrapImpl implements Bootstrap {
             TaskUpdateCommand.class, TaskViewCommand.class, TaskViewAllCommand.class, UserSignInCommand.class,
             UserSignUpCommand.class, UserChangePasswordCommand.class, UserViewAllCommand.class
     ));
+
+    public BootstrapImpl(UserEndpoint userEndpoint, TaskEndpoint taskEndpoint, ProjectEndpoint projectEndpoint) {
+        this.userEndpoint = userEndpoint;
+        this.taskEndpoint = taskEndpoint;
+        this.projectEndpoint = projectEndpoint;
+    }
 
     @Override
     public void start() {

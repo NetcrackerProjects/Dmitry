@@ -11,12 +11,12 @@ public enum  ScannerUtil {
     private static Scanner scanner = new Scanner(System.in);
 
     public static String nextLine() {
-        return scanner.nextLine().toLowerCase().trim();
+        return scanner.nextLine().trim();
     }
 
     public static Integer nextInt() {
         try {
-            return Integer.parseInt(scanner.nextLine().toLowerCase().trim());
+            return Integer.parseInt(scanner.nextLine().trim());
         } catch (Exception e) {
             return null;
         }
