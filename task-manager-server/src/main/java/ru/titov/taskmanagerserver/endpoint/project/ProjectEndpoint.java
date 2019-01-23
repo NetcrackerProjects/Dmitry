@@ -55,13 +55,13 @@ public class ProjectEndpoint {
         try {
             final TokenData tokenData = TokenUtil.decrypt(token);
             final Project project = serviceLocator.getProjectService().getByOrderIndex(tokenData.getUserId(), projectOrderIndex);
-            serviceLocator.getProjectService().removeByOrderIndex(tokenData.getUserId(), projectOrderIndex);
             for (final Task task : project.getTasks()) {
                 if (task == null) continue;
                 if (project.getId().equals(task.getProject().getId())) {
                     serviceLocator.getTaskService().removeById(task.getId());
                 }
             }
+            serviceLocator.getProjectService().removeByOrderIndex(tokenData.getUserId(), projectOrderIndex);
         } catch (Exception e) {
             response.setSuccess(false);
             response.setMessage(e.getMessage());
