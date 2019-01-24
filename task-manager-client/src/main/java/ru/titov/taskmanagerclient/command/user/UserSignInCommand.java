@@ -13,7 +13,7 @@ public class UserSignInCommand extends AbstractCommand {
         final String login = ScannerUtil.nextLine();
         System.out.println("Enter password:");
         final String password = ScannerUtil.nextLine();
-        final TokenResponse tokenResponse = bootstrap.getUserEndpoint().signIn(login, password);
+        final TokenResponse tokenResponse = endpointLocator.getUserEndpoint().signIn(login, password);
         if (tokenResponse.isSuccess()) {
             System.out.println("token: " + tokenResponse.getToken());
             System.out.println(tokenResponse.getMessage());

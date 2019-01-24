@@ -1,9 +1,7 @@
 package ru.titov.taskmanagerserver.api.service;
 
 import ru.titov.taskmanagerserver.entity.User;
-import ru.titov.taskmanagerserver.error.user.AbstractUserException;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface UserService {

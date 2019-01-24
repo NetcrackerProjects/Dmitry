@@ -7,8 +7,16 @@ import ru.titov.taskmanagerclient.api.controller.CommandLocator;
 import ru.titov.taskmanagerclient.api.controller.EndpointLocator;
 import ru.titov.taskmanagerclient.command.AbstractCommand;
 import ru.titov.taskmanagerclient.command.help.HelpCommand;
-import ru.titov.taskmanagerclient.command.project.*;
-import ru.titov.taskmanagerclient.command.task.*;
+import ru.titov.taskmanagerclient.command.project.ProjectCreateCommand;
+import ru.titov.taskmanagerclient.command.project.ProjectRemoveCommand;
+import ru.titov.taskmanagerclient.command.project.ProjectUpdateCommand;
+import ru.titov.taskmanagerclient.command.project.ProjectViewAllCommand;
+import ru.titov.taskmanagerclient.command.project.ProjectViewCommand;
+import ru.titov.taskmanagerclient.command.task.TaskCreateCommand;
+import ru.titov.taskmanagerclient.command.task.TaskRemoveCommand;
+import ru.titov.taskmanagerclient.command.task.TaskUpdateCommand;
+import ru.titov.taskmanagerclient.command.task.TaskViewAllCommand;
+import ru.titov.taskmanagerclient.command.task.TaskViewCommand;
 import ru.titov.taskmanagerclient.command.user.UserChangePasswordCommand;
 import ru.titov.taskmanagerclient.command.user.UserSignInCommand;
 import ru.titov.taskmanagerclient.command.user.UserSignUpCommand;
@@ -22,11 +30,11 @@ import ru.titov.taskmanagerserver.endpoint.task.TaskEndpointService;
 import ru.titov.taskmanagerserver.endpoint.user.UserEndpoint;
 import ru.titov.taskmanagerserver.endpoint.user.UserEndpointService;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.Arrays;
 
 @Getter
 @Setter
@@ -77,7 +85,8 @@ public class BootstrapImpl implements Bootstrap, EndpointLocator, CommandLocator
         if (commandClasses.isEmpty()) throw new NoSuchCommandsException();
         for (final Class<? extends AbstractCommand> commandClass : commandClasses) {
             final AbstractCommand command = commandClass.newInstance();
-            command.setBootstrap(this);
+            command.setEndpointLocator(this);
+            command.setCommandLocator(this);
             commandsMapping.put(command.command(), command);
         }
     }

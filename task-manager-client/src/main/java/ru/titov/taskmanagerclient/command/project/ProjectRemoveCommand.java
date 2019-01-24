@@ -13,7 +13,7 @@ public class ProjectRemoveCommand extends AbstractCommand {
         final String token = ScannerUtil.nextLine();
         System.out.println("Enter order index:");
         final Integer orderIndex = ScannerUtil.nextInt();
-        final Response response = bootstrap.getProjectEndpoint().remove(token, orderIndex);
+        final Response response = endpointLocator.getProjectEndpoint().remove(token, orderIndex);
         System.out.println(response.getMessage());
     }
 

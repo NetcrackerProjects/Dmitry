@@ -14,7 +14,7 @@ public class TaskViewCommand extends AbstractCommand {
         final String token = ScannerUtil.nextLine();
         System.out.println("Enter order index:");
         final Integer orderIndex = ScannerUtil.nextInt();
-        final TaskResponse taskResponse = bootstrap.getTaskEndpoint().view(token, orderIndex);
+        final TaskResponse taskResponse = endpointLocator.getTaskEndpoint().view(token, orderIndex);
         if (taskResponse.isSuccess()) {
             final SimpleTask simpleTask = taskResponse.getTask();
             System.out.println(orderIndex + ". " + simpleTask.getName() + " " + simpleTask.getDescription());

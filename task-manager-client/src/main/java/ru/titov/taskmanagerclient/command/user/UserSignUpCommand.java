@@ -13,7 +13,7 @@ public class UserSignUpCommand extends AbstractCommand {
         final String login = ScannerUtil.nextLine();
         System.out.println("Enter password:");
         final String password = ScannerUtil.nextLine();
-        final Response response = bootstrap.getUserEndpoint().signUp(login, password);
+        final Response response = endpointLocator.getUserEndpoint().signUp(login, password);
         System.out.println(response.getMessage());
     }
 

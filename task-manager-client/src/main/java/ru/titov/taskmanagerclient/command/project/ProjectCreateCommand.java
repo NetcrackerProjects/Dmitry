@@ -13,7 +13,7 @@ public class ProjectCreateCommand extends AbstractCommand {
         final String token = ScannerUtil.nextLine();
         System.out.println("Enter project name:");
         final String projectName = ScannerUtil.nextLine();
-        final Response response = bootstrap.getProjectEndpoint().create(token, projectName);
+        final Response response = endpointLocator.getProjectEndpoint().create(token, projectName);
         System.out.println(response.getMessage());
     }
 

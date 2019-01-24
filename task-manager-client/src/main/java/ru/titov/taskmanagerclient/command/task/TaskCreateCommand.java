@@ -17,7 +17,7 @@ public class TaskCreateCommand extends AbstractCommand {
         final String taskName = ScannerUtil.nextLine();
         System.out.println("Enter task description:");
         final String taskDescription = ScannerUtil.nextLine();
-        final Response response = bootstrap.getTaskEndpoint().create(token, projectOrderId, taskName, taskDescription);
+        final Response response = endpointLocator.getTaskEndpoint().create(token, projectOrderId, taskName, taskDescription);
         System.out.println(response.getMessage());
     }
 

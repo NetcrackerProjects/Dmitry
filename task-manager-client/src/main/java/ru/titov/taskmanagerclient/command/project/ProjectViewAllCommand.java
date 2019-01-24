@@ -14,7 +14,7 @@ public class ProjectViewAllCommand extends AbstractCommand {
         System.out.println("[VIEW PROJECT]");
         System.out.println("Enter token:");
         final String token = ScannerUtil.nextLine();
-        final ProjectListResponse projectListResponse = bootstrap.getProjectEndpoint().viewAll(token);
+        final ProjectListResponse projectListResponse = endpointLocator.getProjectEndpoint().viewAll(token);
         if (projectListResponse.isSuccess()) {
             final Collection<SimpleProject> projects = projectListResponse.getProjects();
             int orderId = 0;

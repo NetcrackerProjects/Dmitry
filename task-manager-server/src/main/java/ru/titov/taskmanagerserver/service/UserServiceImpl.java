@@ -4,12 +4,16 @@ import ru.titov.taskmanagerserver.api.repository.UserRepository;
 import ru.titov.taskmanagerserver.api.service.UserService;
 import ru.titov.taskmanagerserver.dto.secure.TokenData;
 import ru.titov.taskmanagerserver.entity.User;
-import ru.titov.taskmanagerserver.error.user.*;
+import ru.titov.taskmanagerserver.error.user.AbstractUserException;
+import ru.titov.taskmanagerserver.error.user.InvalidUserIdException;
+import ru.titov.taskmanagerserver.error.user.InvalidUserInputException;
+import ru.titov.taskmanagerserver.error.user.InvalidUserLoginException;
+import ru.titov.taskmanagerserver.error.user.InvalidUserPasswordException;
+import ru.titov.taskmanagerserver.error.user.UserLoginExistsException;
+import ru.titov.taskmanagerserver.error.user.UserNotFoundException;
 import ru.titov.taskmanagerserver.util.PasswordHashUtil;
 import ru.titov.taskmanagerserver.util.TokenUtil;
 
-import javax.persistence.Query;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

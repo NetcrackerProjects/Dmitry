@@ -13,7 +13,7 @@ public class UserChangePasswordCommand extends AbstractCommand {
         final String token = ScannerUtil.nextLine();
         System.out.println("Enter new password:");
         final String password = ScannerUtil.nextLine();
-        final Response response = bootstrap.getUserEndpoint().changePassword(token, password);
+        final Response response = endpointLocator.getUserEndpoint().changePassword(token, password);
         System.out.println(response.getMessage());
     }
 

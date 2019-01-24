@@ -14,7 +14,7 @@ public class ProjectViewCommand extends AbstractCommand {
         final String token = ScannerUtil.nextLine();
         System.out.println("Enter order index:");
         final Integer orderIndex = ScannerUtil.nextInt();
-        final ProjectResponse projectResponse = bootstrap.getProjectEndpoint().view(token, orderIndex);
+        final ProjectResponse projectResponse = endpointLocator.getProjectEndpoint().view(token, orderIndex);
         if (projectResponse.isSuccess()) {
             final SimpleProject project = projectResponse.getProject();
             System.out.println(orderIndex + ". " + project.getName());

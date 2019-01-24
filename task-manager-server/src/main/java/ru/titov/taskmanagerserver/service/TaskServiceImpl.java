@@ -3,17 +3,15 @@ package ru.titov.taskmanagerserver.service;
 import ru.titov.taskmanagerserver.api.repository.TaskRepository;
 import ru.titov.taskmanagerserver.api.service.TaskService;
 import ru.titov.taskmanagerserver.entity.Task;
-import ru.titov.taskmanagerserver.error.project.AbstractProjectException;
 import ru.titov.taskmanagerserver.error.project.InvalidProjectIdException;
-import ru.titov.taskmanagerserver.error.task.*;
-import ru.titov.taskmanagerserver.error.user.AbstractUserException;
+import ru.titov.taskmanagerserver.error.task.InvalidTaskIdException;
+import ru.titov.taskmanagerserver.error.task.InvalidTaskInputException;
+import ru.titov.taskmanagerserver.error.task.InvalidTaskNameException;
+import ru.titov.taskmanagerserver.error.task.InvalidTaskOrderIndexException;
+import ru.titov.taskmanagerserver.error.task.TaskExistsException;
+import ru.titov.taskmanagerserver.error.task.TaskNotFoundException;
 import ru.titov.taskmanagerserver.error.user.InvalidUserIdException;
-import ru.titov.taskmanagerserver.error.user.InvalidUserInputException;
 
-import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class TaskServiceImpl implements TaskService {

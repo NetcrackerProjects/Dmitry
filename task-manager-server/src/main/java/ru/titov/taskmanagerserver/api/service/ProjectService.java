@@ -1,9 +1,6 @@
 package ru.titov.taskmanagerserver.api.service;
 
 import ru.titov.taskmanagerserver.entity.Project;
-import ru.titov.taskmanagerserver.error.project.AbstractProjectException;
-import ru.titov.taskmanagerserver.error.project.InvalidProjectIdException;
-import ru.titov.taskmanagerserver.error.user.AbstractUserException;
 
 import java.util.List;
 

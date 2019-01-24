@@ -14,7 +14,7 @@ public class UserViewAllCommand extends AbstractCommand {
         System.out.println("[VIEW USERS]");
         System.out.println("Enter token:");
         final String token = ScannerUtil.nextLine();
-        final UserListResponse userListResponse = bootstrap.getUserEndpoint().viewAll(token);
+        final UserListResponse userListResponse = endpointLocator.getUserEndpoint().viewAll(token);
         if (userListResponse.isSuccess()) {
             final Collection<SimpleUser> users = userListResponse.getUsers();
             if (users.isEmpty()) System.out.println("Users not found");

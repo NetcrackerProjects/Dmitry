@@ -15,7 +15,7 @@ public class ProjectUpdateCommand extends AbstractCommand {
         final Integer orderId = ScannerUtil.nextInt();
         System.out.println("Enter new project name:");
         final String projectName = ScannerUtil.nextLine();
-        final Response response = bootstrap.getProjectEndpoint().update(token, orderId, projectName);
+        final Response response = endpointLocator.getProjectEndpoint().update(token, orderId, projectName);
         System.out.println(response.getMessage());
     }
 

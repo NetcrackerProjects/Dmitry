@@ -1,9 +1,9 @@
 package ru.titov.taskmanagerserver.endpoint.user;
 
 import ru.titov.taskmanagerserver.api.service.ServiceLocator;
-import ru.titov.taskmanagerserver.dto.response.user.SimpleUser;
 import ru.titov.taskmanagerserver.dto.response.Response;
 import ru.titov.taskmanagerserver.dto.response.token.TokenResponse;
+import ru.titov.taskmanagerserver.dto.response.user.SimpleUser;
 import ru.titov.taskmanagerserver.dto.response.user.UserListResponse;
 import ru.titov.taskmanagerserver.dto.secure.TokenData;
 import ru.titov.taskmanagerserver.entity.User;

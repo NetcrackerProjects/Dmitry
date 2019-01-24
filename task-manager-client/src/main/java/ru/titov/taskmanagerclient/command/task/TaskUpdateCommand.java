@@ -19,7 +19,7 @@ public class TaskUpdateCommand extends AbstractCommand {
         final String taskName = ScannerUtil.nextLine();
         System.out.println("Enter new task description:");
         final String taskDescription = ScannerUtil.nextLine();
-        final Response response = bootstrap.getTaskEndpoint().update(
+        final Response response = endpointLocator.getTaskEndpoint().update(
                 token,
                 taskOrderIndex,
                 projectOrderIndex,

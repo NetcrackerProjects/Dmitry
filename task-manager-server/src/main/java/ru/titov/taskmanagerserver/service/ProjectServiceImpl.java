@@ -3,14 +3,14 @@ package ru.titov.taskmanagerserver.service;
 import ru.titov.taskmanagerserver.api.repository.ProjectRepository;
 import ru.titov.taskmanagerserver.api.service.ProjectService;
 import ru.titov.taskmanagerserver.entity.Project;
-import ru.titov.taskmanagerserver.error.project.*;
-import ru.titov.taskmanagerserver.error.user.AbstractUserException;
+import ru.titov.taskmanagerserver.error.project.InvalidProjectIdException;
+import ru.titov.taskmanagerserver.error.project.InvalidProjectInputException;
+import ru.titov.taskmanagerserver.error.project.InvalidProjectNameException;
+import ru.titov.taskmanagerserver.error.project.InvalidProjectOrderIndexException;
+import ru.titov.taskmanagerserver.error.project.ProjectExistsException;
+import ru.titov.taskmanagerserver.error.project.ProjectNotFoundException;
 import ru.titov.taskmanagerserver.error.user.InvalidUserInputException;
 
-import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class ProjectServiceImpl implements ProjectService {

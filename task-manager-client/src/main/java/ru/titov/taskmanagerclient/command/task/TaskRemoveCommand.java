@@ -13,7 +13,7 @@ public class TaskRemoveCommand extends AbstractCommand {
         final String token = ScannerUtil.nextLine();
         System.out.println("Enter task order index:");
         final Integer orderIndex = ScannerUtil.nextInt();
-        final Response response = bootstrap.getTaskEndpoint().remove(token, orderIndex);
+        final Response response = endpointLocator.getTaskEndpoint().remove(token, orderIndex);
         System.out.println(response.getMessage());
     }
 
