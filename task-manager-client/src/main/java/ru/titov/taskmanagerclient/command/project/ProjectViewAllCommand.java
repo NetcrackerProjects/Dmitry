@@ -18,7 +18,10 @@ public class ProjectViewAllCommand extends AbstractCommand {
         if (projectListResponse.isSuccess()) {
             final Collection<SimpleProject> projects = projectListResponse.getProjects();
             int orderId = 0;
-            if (projects.isEmpty()) System.out.println("Projects not found");
+            if (projects.isEmpty()) {
+                System.out.println("Projects not found");
+                return;
+            }
             for (final SimpleProject project : projects) {
                 if (project == null) continue;
                 System.out.println(orderId + ". " + project.getName());

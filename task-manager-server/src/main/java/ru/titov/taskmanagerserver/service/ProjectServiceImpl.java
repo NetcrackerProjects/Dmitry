@@ -22,7 +22,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void add(final Project project) throws AbstractProjectException {
+    public void add(final Project project) {
         if (project == null) throw new InvalidProjectInputException();
         if (project.getName() == null || project.getName().isEmpty()) throw new InvalidProjectNameException();
         if (doesExists(project.getId())) throw new ProjectExistsException();
@@ -32,7 +32,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project getByOrderIndex(final String userId, final Integer projectOrderIndex) throws AbstractProjectException, AbstractUserException {
+    public Project getByOrderIndex(final String userId, final Integer projectOrderIndex) {
         if (projectOrderIndex == null) throw new InvalidProjectOrderIndexException();
         final List<Project> projects = getAllByUserId(userId);
         try {
@@ -43,7 +43,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project getById(final String projectId) throws AbstractProjectException {
+    public Project getById(final String projectId) {
         if (projectId == null) throw new InvalidProjectIdException();
         final Project project = projectRepository.getById(projectId);
         if (project == null) throw new ProjectNotFoundException();
@@ -51,7 +51,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void update(final Project project) throws AbstractProjectException {
+    public void update(final Project project) {
         if (project == null || !doesExists(project.getId())) {
             throw new InvalidProjectInputException();
         }
@@ -61,14 +61,14 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void removeByOrderIndex(final String userId, final Integer projectOrderIndex) throws AbstractProjectException, AbstractUserException {
+    public void removeByOrderIndex(final String userId, final Integer projectOrderIndex) {
         if (projectOrderIndex == null) throw new InvalidProjectOrderIndexException();
         final Project project = getByOrderIndex(userId, projectOrderIndex);
         removeById(project.getId());
     }
 
     @Override
-    public void removeById(final String projectId) throws AbstractProjectException {
+    public void removeById(final String projectId) {
         if (projectId == null || !doesExists(projectId)) {
             throw new InvalidProjectIdException();
         }
@@ -80,7 +80,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public boolean doesExists(final String projectId) throws InvalidProjectIdException {
+    public boolean doesExists(final String projectId) {
         if (projectId == null || projectId.isEmpty()) throw new InvalidProjectIdException();
         return projectRepository.containsById(projectId);
     }
@@ -91,7 +91,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<Project> getAllByUserId(final String userId) throws AbstractUserException {
+    public List<Project> getAllByUserId(final String userId) {
         if (userId == null || userId.isEmpty()) throw new InvalidUserInputException();
         return projectRepository.getAllByUserId(userId);
     }

@@ -19,13 +19,7 @@ import ru.titov.taskmanagerserver.service.UserServiceImpl;
 public class App {
 
     public static void main(String[] args) {
-        final ProjectRepository projectRepository = new ProjectRepositoryImpl();
-        final ProjectService projectService = new ProjectServiceImpl(projectRepository);
-        final TaskRepository taskRepository = new TaskRepositoryImpl();
-        final TaskService taskService = new TaskServiceImpl(taskRepository);
-        final UserRepository userRepository = new UserRepositoryImpl();
-        final UserService userService = new UserServiceImpl(userRepository);
-        final Bootstrap bootstrap = new BootstrapImpl(projectService, taskService, userService);
+        final Bootstrap bootstrap = new BootstrapImpl();
         bootstrap.run();
     }
 }

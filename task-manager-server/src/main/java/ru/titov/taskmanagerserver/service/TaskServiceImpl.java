@@ -25,7 +25,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void add(final Task task) throws AbstractTaskException {
+    public void add(final Task task) {
         if (task == null) throw new InvalidTaskInputException();
         if (task.getName() == null || task.getName().isEmpty()) throw new InvalidTaskNameException();
         if (doesExists(task.getId())) throw new TaskExistsException();
@@ -35,7 +35,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Task getByOrderIndex(final String userId, final Integer taskOrderIndex) throws AbstractTaskException, AbstractUserException {
+    public Task getByOrderIndex(final String userId, final Integer taskOrderIndex) {
         if (taskOrderIndex == null) throw new InvalidTaskOrderIndexException();
         final List<Task> tasks = getAllByUserId(userId);
         try {
@@ -46,7 +46,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Task getById(final String taskId) throws AbstractTaskException {
+    public Task getById(final String taskId) {
         if (taskId == null) throw new InvalidTaskIdException();
         final Task task = taskRepository.getById(taskId);
         if (task == null) throw new TaskNotFoundException();
@@ -54,7 +54,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void update(final Task task) throws AbstractTaskException {
+    public void update(final Task task) {
         if (task == null || !doesExists(task.getId())) throw new InvalidTaskInputException();
         if (task.getName() == null || task.getName().isEmpty()) throw new InvalidTaskNameException();
         taskRepository.beginTransaction();
@@ -63,14 +63,14 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void removeByOrderIndex(final String userId, final Integer taskOrderIndex) throws AbstractTaskException, AbstractUserException {
+    public void removeByOrderIndex(final String userId, final Integer taskOrderIndex) {
         if (taskOrderIndex == null) throw new InvalidTaskOrderIndexException();
         final Task task = getByOrderIndex(userId, taskOrderIndex);
         removeById(task.getId());
     }
 
     @Override
-    public void removeById(final String taskId) throws AbstractTaskException {
+    public void removeById(final String taskId) {
         if (taskId == null) throw new InvalidTaskIdException();
         final Task task = new Task();
         task.setId(taskId);
@@ -80,7 +80,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public boolean doesExists(final String taskId) throws InvalidTaskIdException {
+    public boolean doesExists(final String taskId) {
         if (taskId == null || taskId.isEmpty()) throw new InvalidTaskIdException();
         return taskRepository.containsById(taskId);
     }
@@ -91,13 +91,13 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> getAllByUserId(final String userId) throws AbstractUserException {
+    public List<Task> getAllByUserId(final String userId) {
         if (userId == null || userId.isEmpty()) throw new InvalidUserIdException();
         return taskRepository.getAllByUserId(userId);
     }
 
     @Override
-    public List<Task> getAllByProjectId(final String projectId) throws AbstractProjectException {
+    public List<Task> getAllByProjectId(final String projectId) {
         if (projectId == null || projectId.isEmpty()) throw new InvalidProjectIdException();
         return taskRepository.getAllByProjectId(projectId);
     }

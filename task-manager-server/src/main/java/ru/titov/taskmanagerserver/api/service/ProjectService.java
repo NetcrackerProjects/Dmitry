@@ -9,21 +9,21 @@ import java.util.List;
 
 public interface ProjectService {
 
-    void add(Project project) throws AbstractProjectException;
+    void add(Project project);
 
-    Project getByOrderIndex(String userId, Integer projectOrderIndex) throws AbstractProjectException, AbstractUserException;
+    Project getByOrderIndex(String userId, Integer projectOrderIndex);
 
-    Project getById(String projectId) throws AbstractProjectException;
+    Project getById(String projectId);
 
-    void update(Project project) throws AbstractProjectException;
+    void update(Project project);
 
-    void removeByOrderIndex(String userId, Integer projectOrderIndex) throws AbstractProjectException, AbstractUserException;
+    void removeByOrderIndex(String userId, Integer projectOrderIndex);
 
-    void removeById(String projectId) throws AbstractProjectException;
+    void removeById(String projectId);
 
-    boolean doesExists(String projectId) throws InvalidProjectIdException;
+    boolean doesExists(String projectId);
 
     List getAll();
 
-    List<Project> getAllByUserId(String userId) throws AbstractUserException;
+    List<Project> getAllByUserId(String userId);
 }

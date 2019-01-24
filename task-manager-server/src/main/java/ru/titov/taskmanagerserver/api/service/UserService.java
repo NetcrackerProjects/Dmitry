@@ -8,27 +8,27 @@ import java.util.List;
 
 public interface UserService {
 
-    void signUp(String login, String passwordHash) throws AbstractUserException;
+    void signUp(String login, String passwordHash);
 
-    String signIn(String login, String passwordHash) throws AbstractUserException;
+    String signIn(String login, String passwordHash);
 
-    void init() throws AbstractUserException;
+    void init();
 
-    void add(User user) throws AbstractUserException;
+    void add(User user);
 
-    User getByLogin(String login) throws AbstractUserException;
+    User getByLogin(String login);
 
-    User getById(String id) throws AbstractUserException;
+    User getById(String id);
 
-    void changePassword(String token, String newPasswordHash) throws AbstractUserException;
+    void changePassword(String token, String newPasswordHash);
 
-    void removeByLogin(String login) throws AbstractUserException;
+    void removeByLogin(String login);
 
-    void removeById(String id) throws AbstractUserException;
+    void removeById(String id);
 
-    boolean doesExistsById(String id) throws AbstractUserException;
+    boolean doesExistsById(String id);
 
-    boolean doesExistsByLogin(String login) throws AbstractUserException;
+    boolean doesExistsByLogin(String login);
 
     List<User> getAll();
 

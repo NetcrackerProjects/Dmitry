@@ -11,23 +11,23 @@ import java.util.List;
 
 public interface TaskService {
 
-    void add(Task task) throws AbstractTaskException;
+    void add(Task task);
 
-    Task getByOrderIndex(String userId, Integer taskOrderIndex) throws AbstractTaskException, AbstractUserException;
+    Task getByOrderIndex(String userId, Integer taskOrderIndex);
 
-    Task getById(String taskId) throws AbstractTaskException;
+    Task getById(String taskId);
 
-    void update(Task task) throws AbstractTaskException;
+    void update(Task task);
 
-    void removeByOrderIndex(String userId, Integer taskOrderIndex) throws AbstractTaskException, AbstractUserException;
+    void removeByOrderIndex(String userId, Integer taskOrderIndex);
 
-    void removeById(String taskId) throws AbstractTaskException;
+    void removeById(String taskId);
 
-    boolean doesExists(String taskId) throws InvalidTaskIdException;
+    boolean doesExists(String taskId);
 
     List<Task> getAll();
 
-    List<Task> getAllByUserId(String userId) throws AbstractUserException;
+    List<Task> getAllByUserId(String userId);
 
-    List<Task> getAllByProjectId(String projectId) throws AbstractProjectException;
+    List<Task> getAllByProjectId(String projectId);
 }

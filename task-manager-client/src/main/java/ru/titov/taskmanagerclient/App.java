@@ -12,10 +12,7 @@ import ru.titov.taskmanagerserver.endpoint.user.UserEndpointService;
 public class App {
 
     public static void main(String[] args) {
-        final UserEndpoint userEndpoint = new UserEndpointService().getUserEndpointPort();
-        final TaskEndpoint taskEndpoint = new TaskEndpointService().getTaskEndpointPort();
-        final ProjectEndpoint projectEndpoint = new ProjectEndpointService().getProjectEndpointPort();
-        final Bootstrap bootstrap = new BootstrapImpl(userEndpoint, taskEndpoint, projectEndpoint);
+        final Bootstrap bootstrap = new BootstrapImpl();
         bootstrap.start();
     }
 
